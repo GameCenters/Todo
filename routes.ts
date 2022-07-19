@@ -52,18 +52,19 @@ router.get('/',(context) => {
         if(!context.request.hasBody){
 
             //400번 에러를 보내줌 
-            context.response.status = Status.BadRequest
+            context.response.status = Status.BadRequest //클라이언트의 잘못된 요청으로 요청에 대해 처리불가 
 
             //body로 보낼 값 
             context.response.body = "데이터가 없습니다"
         }
+        //정보를 제공 받았다면 
         else{
-            //정보를 제공 받았다면 
-            //임의로 아이디를 생성하고 제공받은 정보롤 book object를 만들어준다 
+            
+            //임의로 아이디를 생성하고 제공받은 정보롤 
             const book: Book = await body.value;
             book.id = v4.generate();
             books.push(book);
-            context.response.status = 201;
+            context.response.status = Status.Created;//요청에 따라 리소스를 생성 완료 
             context.response.body = book;
         }
     })
@@ -71,12 +72,12 @@ router.get('/',(context) => {
         const book:Book | undefined = books.find((b) => b.id === context.params.id);
         if(book){
             context.response.body = book;
-            context.response.status = 200;
+            context.response.status = Status.OK;// 요청성공 
         }
         else{
             //id가 존재 하지않을경우 에러 코드와 내용을 전달 
             context.response.body = "책을 찾지못했습니다";
-            context.response.status = 404;
+            context.response.status = Status.NotFound;// 요청 리소스를 찾을수 없다 (주로 리소스가 서버에 존재하지 않을때)
         }
     })
 
