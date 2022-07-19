@@ -60,9 +60,11 @@ router.get('/',(context) => {
         //정보를 제공 받았다면 
         else{
             
-            //임의로 아이디를 생성하고 제공받은 정보롤 
+            //제공받은 정보(DTO)를 인터페이스(Book)를 생성후 저장 
             const book: Book = await body.value;
+            //임의로 아이디를 생성
             book.id = v4.generate();
+            //push작업으로 정보를books Array에 저장  
             books.push(book);
             context.response.status = Status.Created;//요청에 따라 리소스를 생성 완료 
             context.response.body = book;
