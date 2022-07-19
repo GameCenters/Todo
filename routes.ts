@@ -2,6 +2,7 @@
 //Deno는 module을 URL주소를 통해서 사용가능 
 import  { Router } from "https://deno.land/x/oak@v10.6.0/mod.ts"
 import { v4 } from "https://deno.land/std@0.148.0/uuid/mod.ts";
+import { Status } from "https://deno.land/std@0.148.0/http/http_status.ts"
 import {Book,TodoList} from "./types.ts";
 
 //Router 생성 
@@ -51,7 +52,7 @@ router.get('/',(context) => {
         if(!context.request.hasBody){
 
             //400번 에러를 보내줌 
-            context.response.status = 400
+            context.response.status = Status.BadRequest
 
             //body로 보낼 값 
             context.response.body = "데이터가 없습니다"
