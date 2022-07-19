@@ -1,6 +1,6 @@
 // deno-lint-ignore-file
 //Deno는 module을 URL주소를 통해서 사용가능 
-import  { Router } from "https://deno.land/x/oak@v10.6.0/mod.ts"
+import  { Context, Router } from "https://deno.land/x/oak@v10.6.0/mod.ts"
 import { v4 } from "https://deno.land/std@0.148.0/uuid/mod.ts";
 import { Status } from "https://deno.land/std@0.148.0/http/http_status.ts"
 import {Book,TodoList} from "./types.ts";
@@ -34,6 +34,25 @@ let todolist: TodoList[] = [
     },
 ]
 
+interface IBookRepository{
+    findBook(conid:string,context: Context): void | undefined;
+}
+
+class BookRepository implements IBookRepository{
+    findBook(conid:string,context:Context): void{
+        const book : Book | undefined  = books.find((b) => b.id === conid);
+        if(book){
+            context.response.body = book;
+            context.response.status = Status.OK;// 요청성공 
+        }
+        else{
+            //id가 존재 하지않을경우 에러 코드와 내용을 전달 
+            context.response.body = "책을 찾지못했습니다";
+            context.response.status = Status.NotFound;// 요청 리소스를 찾을수 없다 (주로 리소스가 서버에 존재하지 않을때)
+        }
+    }
+}
+
 router.get('/',(context) => {
     context.response.body = "Hello World";
 })
@@ -60,18 +79,22 @@ router.get('/',(context) => {
         //정보를 제공 받았다면 
         else{
             
-            //제공받은 정보(DTO)를 인터페이스(Book)를 생성후 저장 
+            //Book 객체를 선언하고 제공받은 정보(DTO)를 저장
             const book: Book = await body.value;
             //임의로 아이디를 생성
             book.id = v4.generate();
-            //push작업으로 정보를books Array에 저장  
+            //push작업으로 객체를books Array에 저장  
             books.push(book);
             context.response.status = Status.Created;//요청에 따라 리소스를 생성 완료 
             context.response.body = book;
         }
     })
     .get("/book/:id",async(context) =>{
-        const book:Book | undefined = books.find((b) => b.id === context.params.id);
+        const conid:string = context.params.id;
+        const bookrepositroy = new BookRepository();
+        bookrepositroy.findBook(conid,context);
+        
+        const book:Book | undefined = books.find((b) => b.id === conid);
         if(book){
             context.response.body = book;
             context.response.status = Status.OK;// 요청성공 
