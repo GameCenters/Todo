@@ -93,17 +93,6 @@ router.get('/',(context) => {
         const conid:string = context.params.id;
         const bookrepositroy = new BookRepository();
         bookrepositroy.findBook(conid,context);
-        
-        const book:Book | undefined = books.find((b) => b.id === conid);
-        if(book){
-            context.response.body = book;
-            context.response.status = Status.OK;// 요청성공 
-        }
-        else{
-            //id가 존재 하지않을경우 에러 코드와 내용을 전달 
-            context.response.body = "책을 찾지못했습니다";
-            context.response.status = Status.NotFound;// 요청 리소스를 찾을수 없다 (주로 리소스가 서버에 존재하지 않을때)
-        }
     })
 
     //라우터는 server에서 사용가능하도록 export로 설정 
