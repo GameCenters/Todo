@@ -4,6 +4,7 @@ const client = await new Client().connect({
   hostname: "127.0.0.1",
   username: "root",
   db: "todo",
+  poolSize: 3,
   password: "6389",
 });
 
