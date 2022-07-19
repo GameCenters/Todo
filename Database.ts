@@ -21,6 +21,4 @@ const queryWithParams = await client.query(
     ["name", "todolist"],
 );
 
-console.log(users, queryWithParams);
-
 export default client;
