@@ -4,6 +4,7 @@ import { Book, TodoList } from "./types.ts";
 import { v4 } from "https://deno.land/std@0.148.0/uuid/mod.ts";
 import { Context, Router } from "https://deno.land/x/oak@v10.6.0/mod.ts"
 import { Status } from "https://deno.land/std@0.148.0/http/http_status.ts"
+import { ERR_IPC_CHANNEL_CLOSED } from "https://deno.land/std@0.148.0/node/internal/errors.ts";
 
 //Router 생성 
 const router = new Router();
@@ -58,6 +59,9 @@ router.get('/', (context) => {
 })
     .get("/books", (context) => {
         context.response.body = books;
+    })
+    .delete("/book/:id", async (context) => {
+        context.response.body = "삭제완료";
     })
 
     //TodoList의 값을 보내줌 
