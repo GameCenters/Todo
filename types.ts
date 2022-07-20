@@ -4,7 +4,7 @@ export class Book {
     title: string;
     author: string;
 
-    constructor(id:string,title:string,author:string){
+    constructor(id: string, title: string, author: string) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -12,7 +12,7 @@ export class Book {
 }
 
 //todo 인터페이스 
-export interface TodoList{
+export interface TodoList {
     id: string;
     title: string;
     date: string;

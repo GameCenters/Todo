@@ -17,8 +17,8 @@ const client = await new Client().connect({
 //SELECT
 const users = await client.query(`select * from todolist`);
 const queryWithParams = await client.query(
-    "select ? from ??",
-    ["name", "todolist"],
+  "select ? from ??",
+  ["name", "todolist"],
 );
 
 export default client;
