@@ -18,4 +18,9 @@ public class TodoController {
     public ResponseEntity list(){
         return new ResponseEntity(todoService.TodoList(),HttpStatus.OK);
     }
+
+    @PostMapping("/Post")
+    public ResponseEntity TodoAdd(@RequestBody TodoListDTO todoListDTO){
+        return new ResponseEntity(todoService.TodoListAdd(todoListDTO),HttpStatus.CREATED);
+    }
 }
