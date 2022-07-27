@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor//기본 생성자 생성
 public class TodoList {
     @Id //PK
-    @GeneratedValue(strategy = GenerationType.AUTO) //auto increment
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
     private Integer id;
 
     @Column(nullable = false)
