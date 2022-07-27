@@ -40,6 +40,4 @@ public class TodoController {
         todoService.TodoListAllDelete();
         return new ResponseEntity(todoService.TodoList(),HttpStatus.OK);
     }
-
-
 }
