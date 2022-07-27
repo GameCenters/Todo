@@ -22,4 +22,15 @@ public class TodoService {
         TodoList todoList = new TodoList(DTO.getTitle(), DTO.getDate(),DTO.getComplete());
         return todoListRepository.save(todoList);
     }
+
+    public TodoList TodoListUpdate(int id,TodoListDTO DTO){
+        //id와 일치하는 모든 데이터를 가져옴
+        TodoList todo = todoListRepository.findById(id).get();
+        todo.setTitle(DTO.getTitle());
+        todo.setDate(DTO.getDate());
+        todo.setComplete(DTO.getComplete());
+        todoListRepository.save(todo);
+
+        return todo;
+    }
 }

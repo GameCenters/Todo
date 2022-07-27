@@ -20,7 +20,13 @@ public class TodoController {
     }
 
     @PostMapping("/Post")
-    public ResponseEntity TodoAdd(@RequestBody TodoListDTO todoListDTO){
-        return new ResponseEntity(todoService.TodoListAdd(todoListDTO),HttpStatus.CREATED);
+    public ResponseEntity todoAdd(@RequestBody TodoListDTO DTO){
+        return new ResponseEntity(todoService.TodoListAdd(DTO),HttpStatus.CREATED);
     }
+
+    @PutMapping("/Update/{id}")
+    public ResponseEntity todoUpdate(@PathVariable int id,@RequestBody TodoListDTO DTO){
+        return new ResponseEntity(todoService.TodoListUpdate(id,DTO),HttpStatus.OK);
+    }
+
 }
