@@ -35,4 +35,11 @@ public class TodoController {
         return new ResponseEntity(todoService.TodoList(),HttpStatus.OK);
     }
 
+    @DeleteMapping("/AllDelete")
+    public ResponseEntity todoDelete(){
+        todoService.TodoListAllDelete();
+        return new ResponseEntity(todoService.TodoList(),HttpStatus.OK);
+    }
+
+
 }

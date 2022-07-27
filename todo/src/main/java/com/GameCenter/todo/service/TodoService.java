@@ -37,4 +37,8 @@ public class TodoService {
     public void TodoListDelete(int id){
         todoListRepository.deleteById(id);
     }
+
+    public void TodoListAllDelete(){
+        todoListRepository.deleteAll();
+    }
 }
