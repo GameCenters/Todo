@@ -29,4 +29,10 @@ public class TodoController {
         return new ResponseEntity(todoService.TodoListUpdate(id,DTO),HttpStatus.OK);
     }
 
+    @DeleteMapping("/Delete/{id}")
+    public ResponseEntity todoDelete(@PathVariable int id){
+        todoService.TodoListDelete(id);
+        return new ResponseEntity(todoService.TodoList(),HttpStatus.OK);
+    }
+
 }
