@@ -17,7 +17,7 @@ public class QueryTodoController {
     //ResponseEntity 데이터와 HTTP 상태코드를 지정하는 클래스
     @GetMapping("/")
     public ResponseEntity list(){
-        return new ResponseEntity(new Message(HttpStatus.OK.value(),"조회 완료",todoService.TodoList(),
-                                  todoService.TodoList().size()),HttpStatus.OK);
+        return new ResponseEntity(new Message(HttpStatus.OK.value(),"조회 완료",todoService.allGetTodo(),
+                                  todoService.allGetTodo().size()),HttpStatus.OK);
     }
 }
