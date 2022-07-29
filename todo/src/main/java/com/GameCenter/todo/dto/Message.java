@@ -1,4 +1,4 @@
-package com.GameCenter.todo.controller;
+package com.GameCenter.todo.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
