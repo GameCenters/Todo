@@ -4,7 +4,9 @@ import com.GameCenter.todo.entity.TodoList;
 import com.GameCenter.todo.dto.TodoListDTO;
 import com.GameCenter.todo.repositroy.TodoListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CommandTodoService {
 
     @Autowired
