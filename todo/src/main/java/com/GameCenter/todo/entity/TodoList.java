@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 @Data//Getter,Setter등 기본적인 필드 메소드 생성
 @Entity//Entity 클래스로 지정하여 DB 테이블과 매핑
-@NoArgsConstructor//기본 생성자 생성
 public class TodoList {
     @Id //PK
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
