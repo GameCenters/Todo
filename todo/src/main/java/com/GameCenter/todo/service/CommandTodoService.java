@@ -13,7 +13,11 @@ public class CommandTodoService {
     private TodoListRepository todoListRepository;
 
     public TodoList addTodo(TodoListDTO DTO){
-        TodoList todoList = new TodoList(DTO.getTitle(), DTO.getDate(),DTO.getComplete());
+        TodoList todoList = new TodoList();
+        todoList.setTitle(DTO.getTitle());
+        todoList.setDate(DTO.getDate());
+        todoList.setComplete(DTO.getComplete());
+
         return todoListRepository.save(todoList);
     }
 
