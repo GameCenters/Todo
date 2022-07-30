@@ -21,10 +21,4 @@ public class TodoList {
 
     @Column(nullable = false)
     private String complete;
-
-    public TodoList(String title, String date, String complete){
-        this.title = title;
-        this.date = date;
-        this.complete = complete;
-    }
 }
