@@ -14,23 +14,23 @@ public class CommandTodoController {
     @Autowired
     private CommandTodoService commandTodoService;
 
-    @PostMapping("/Post")
+    @PostMapping("/todo")
     public ResponseEntity todoAdd(@RequestBody TodoListDTO DTO){
         return new ResponseEntity(commandTodoService.addTodo(DTO),HttpStatus.CREATED);
     }
 
-    @PutMapping("/Update/{id}")
+    @PutMapping("/todo/{id}")
     public ResponseEntity todoUpdate(@PathVariable int id, @RequestBody TodoListDTO DTO){
         return new ResponseEntity(commandTodoService.updateTodo(id,DTO),HttpStatus.OK);
     }
 
-    @DeleteMapping("/Delete/{id}")
+    @DeleteMapping("/todo/{id}")
     public ResponseEntity todoDelete(@PathVariable int id){
         commandTodoService.deleteTodo(id);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @DeleteMapping("/AllDelete")
+    @DeleteMapping("/todos")
     public ResponseEntity todoDelete(){
         commandTodoService.allDeleteTodo();
         return new ResponseEntity(HttpStatus.OK);

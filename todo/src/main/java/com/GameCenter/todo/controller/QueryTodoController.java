@@ -14,7 +14,7 @@ public class QueryTodoController {
     private QueryTodoService queryTodoService;
 
     //ResponseEntity 데이터와 HTTP 상태코드를 지정하는 클래스
-    @GetMapping("/")
+    @GetMapping("/todos")
     public ResponseEntity list(){
         return new ResponseEntity(queryTodoService.allGetTodo(),HttpStatus.OK);
     }
