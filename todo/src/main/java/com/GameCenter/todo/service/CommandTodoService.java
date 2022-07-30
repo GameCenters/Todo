@@ -33,7 +33,8 @@ public class CommandTodoService {
     }
 
     public void deleteTodo(int id){
-        todoListRepository.deleteById(id);
+        TodoList todo = todoListRepository.findById(id).get();
+        todoListRepository.delete(todo);
     }
 
     public void allDeleteTodo(){
